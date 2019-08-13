@@ -14,7 +14,7 @@ JUnit 5 Test Engine using project Loom early-access builds
 - Fibers
   - `10.000` 1.2s
   - `100.000` 1.5s
-  - `1.000.000` 5.2s
+  - `1.000.000` 5.2s :rocket:
   
 [i7-7920HQ](https://ark.intel.com/content/www/us/en/ark/products/97462/intel-core-i7-7920hq-processor-8m-cache-up-to-4-10-ghz.html) on Mac OS
 
@@ -24,7 +24,7 @@ JUnit 5 Test Engine using project Loom early-access builds
 - Fibers
   - `10.000` 1.2s
   - `100.000` 1.7s
-  - `1.000.000` 7.1s
+  - `1.000.000` 7.1s :rocket:
   
 [GitHub CI/CD box](https://azure.microsoft.com/en-us/services/devops/pipelines/) on Linux
 
@@ -33,4 +33,4 @@ JUnit 5 Test Engine using project Loom early-access builds
 - Fibers
   - `10.000` 2.9s
   - `100.000` 19.3s
-  - `1.000.000` _Internal Error (continuation.cpp:4110), pid=45199, tid=45234_ [details](https://github.com/sormuras/junit5-looming/commit/246638c1c80608cc245c19eac7250c54e1dc0380/checks)
+  - `1.000.000` 223.1s
