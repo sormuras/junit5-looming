@@ -19,17 +19,17 @@ JUnit 5 Test Engine using project Loom early-access builds
 [i7-7920HQ](https://ark.intel.com/content/www/us/en/ark/products/97462/intel-core-i7-7920hq-processor-8m-cache-up-to-4-10-ghz.html) on Mac OS
 
 - Threads
-  - `10.000` ?s
-  - `100.000` ?s
+  - `10.000` 5.8s
+  - `100.000` 51.0s
 - Fibers
-  - `10.000` ?s
-  - `100.000` ?s
-  - `1.000.000` ?s
+  - `10.000` 1.2s
+  - `100.000` 1.7s
+  - `1.000.000` 7.1s
   
 [GitHub CI/CD box](https://azure.microsoft.com/en-us/services/devops/pipelines/) on Linux
 
 - Threads
-  - `10.000` 6s
+  - `10.000` 6.1s
 - Fibers
   - `10.000` 2.9s
   - `100.000` 19.3s
