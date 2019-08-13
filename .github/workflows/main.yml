@@ -18,4 +18,4 @@ jobs:
         $JUNIT --config tests=10000 --config thread=true
         $JUNIT --config tests=10000 --config thread=false
         $JUNIT --config tests=100000 --config thread=false
-        $JUNIT --config tests=1000000 --config thread=false
+        # $JUNIT --config tests=1000000 --config thread=false
