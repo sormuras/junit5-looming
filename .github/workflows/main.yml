@@ -9,17 +9,10 @@ jobs:
     
     steps:
     - uses: actions/checkout@master
-
-    - name: Download and install JDK 14 with Loom
-      run: |
+    - run: |
         wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
         source ./install-jdk.sh --url https://download.java.net/java/early_access/loom/2/openjdk-14-loom+2-4_linux-x64_bin.tar.gz
-
-    - name: Build project via Bach.java
-      run: jshell --show-version https://bit.ly/bach-jsh
-
-    - name: Run demo
-      run: |
+        jshell --show-version https://bit.ly/bach-jsh
         java --module-path lib;bin\main\modules --module org.junit.platform.console --details SUMMARY --scan-modules --config tests=20000 --config thread=true
         java --module-path lib;bin\main\modules --module org.junit.platform.console --details SUMMARY --scan-modules --config tests=20000 --config thread=false
         java --module-path lib;bin\main\modules --module org.junit.platform.console --details SUMMARY --scan-modules --config tests=1000000 --config thread=false
