@@ -19,9 +19,9 @@
 
 ---
 
-## `LoomTestEngine`
+## LoomTestEngine
 
-- A test is `Thread.sleep(1000)`
+- Every "test" calls `Thread.sleep(1000)`
 - https://github.com/sormuras/junit5-looming
 
 ---
@@ -38,7 +38,7 @@
 
 +++
 
-- Back a thread per request (read: test)
+- Create Thread per Jupiter Test
 
 ---
 
