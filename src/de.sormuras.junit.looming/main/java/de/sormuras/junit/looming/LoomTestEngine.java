@@ -24,7 +24,7 @@ public class LoomTestEngine implements TestEngine {
   public TestDescriptor discover(EngineDiscoveryRequest request, UniqueId uniqueId) {
     var caption = "Loom TestEngine on " + Runtime.version();
     var engine = new EngineDescriptor(uniqueId, caption);
-    var tests = request.getConfigurationParameters().get("tests", Integer::parseInt).orElse(20_000);
+    int tests = request.getConfigurationParameters().get("tests", Integer::parseInt).orElse(20_000);
     for (int i = 0; i < tests; i++) {
       engine.addChild(new Test(engine.getUniqueId(), i));
     }
