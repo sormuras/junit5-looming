@@ -12,3 +12,7 @@ JUnit 5 Test Engine using project Loom early-access builds
 | i7-3770K (Win 10) 	    | 6              	| 51              	| 1.2           	| 1.5            	| 5.2 :rocket:      |
 | i7-7920HQ (Mac OS)    	| 6              	| 51              	| 1.2           	| 1.7            	| 7.1 :rocket:     	|
 | GitHub/Azure (Linux)  	| 6              	| n.a.            	| 3             	| 20             	| 223              	|
+
+## projects, demo, spikes using loom
+
+- https://github.com/forax/loom-fiber
