@@ -15,8 +15,8 @@
 +++
 
 - "A lightweight thread is a Thread"
-- https://mail.openjdk.java.net/pipermail/loom-dev/2019-October/000796.html
-
+- https://mail.openjdk.java.net/pipermail/loom-dev/2019-October/000796.html A lightweight thread is a Thread by Alan Bateman
+- https://www.youtube.com/watch?v=lIq-x_iI-kc Project Loom: Helping Write Concurrent Applications on the Java Platform by Ron Pressler
 ---
 
 ## LoomTestEngine
