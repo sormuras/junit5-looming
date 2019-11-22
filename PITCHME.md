@@ -11,10 +11,12 @@
 ## Project Loom
 
 - Threads, Fibers, Conties...
+- Virtual Threads!
 
 +++
 
 - "A lightweight thread is a Thread"
+- https://mail.openjdk.java.net/pipermail/loom-dev/2019-November/000864.html Virtual Threads: A Short Note about Naming by Ron Pressler
 - https://mail.openjdk.java.net/pipermail/loom-dev/2019-October/000796.html A lightweight thread is a Thread by Alan Bateman
 - https://www.youtube.com/watch?v=lIq-x_iI-kc Project Loom: Helping Write Concurrent Applications on the Java Platform by Ron Pressler
 ---
