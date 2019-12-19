@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 
 public class Run {
   public static void main(String... args) throws Exception {
-    start(true, 10_000);
-    start(true, 100_000);
     start(false, 10_000);
     start(false, 100_000);
-    start(false, 1_000_000);
+    start(true, 10_000);
+    start(true, 100_000);
+    start(true, 1_000_000);
   }
 
-  static void start(boolean thread, int tests) throws Exception {
+  static void start(boolean virtual, int tests) throws Exception {
     var java =
         new Command("java")
             .add(ProcessHandle.current().info().command().orElse("java"))
@@ -21,7 +21,7 @@ public class Run {
             .add("--module", "org.junit.platform.console")
             .add("--details=SUMMARY")
             .add("--scan-modules")
-            .add("--config", "thread=" + thread)
+            .add("--config", "virtual=" + virtual)
             .add("--config", "tests=" + tests);
     start(java.toStrings());
   }
@@ -56,11 +56,6 @@ public class Run {
     Command add(String key, List<Path> paths) {
       var strings = paths.stream().map(Path::toString);
       return add(key).add(strings.collect(Collectors.joining(File.pathSeparator)));
-    }
-
-    @Override
-    public Command clone() {
-      return new Command(name, toStrings());
     }
 
     String[] toStrings() {
