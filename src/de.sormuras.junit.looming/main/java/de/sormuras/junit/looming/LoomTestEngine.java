@@ -1,9 +1,10 @@
 package de.sormuras.junit.looming;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
+import java.util.function.Supplier;
 import org.junit.platform.engine.EngineDiscoveryRequest;
 import org.junit.platform.engine.EngineExecutionListener;
 import org.junit.platform.engine.ExecutionRequest;
@@ -35,53 +36,32 @@ public class LoomTestEngine implements TestEngine {
   public void execute(ExecutionRequest request) {
     var engine = request.getRootTestDescriptor();
     var listener = request.getEngineExecutionListener();
+    var virtual = request.getConfigurationParameters().getBoolean("virtual").orElse(false);
+    var tests = engine.getChildren();
+    System.out.println("Scheduling " + tests.size() + " tests");
     listener.executionStarted(engine);
-    if (request.getConfigurationParameters().getBoolean("thread").orElse(false)) {
-      executeInThreadPool(engine, listener);
-    } else {
-      executeInFiberScope(engine, listener);
-    }
-    listener.executionFinished(engine, TestExecutionResult.successful());
-  }
-
-  private void executeInThreadPool(TestDescriptor engine, EngineExecutionListener listener) {
-    System.out.println("LoomTestEngine.executeInThreadPool");
-    var executor = Executors.newFixedThreadPool(1000);
-    System.out.println(executor);
-    try {
-      var tests = engine.getChildren();
-      System.out.println("scheduling " + tests.size() + " tests via executor");
+    try (var executor = newExecutorService(virtual)) {
       for (var test : tests) {
         listener.executionStarted(test);
         var future = CompletableFuture.runAsync((Runnable) test, executor);
         future.whenCompleteAsync(markSuccessfullyFinished(listener, test));
       }
-      System.out.println("awaiting all threads to complete...");
-      executor.shutdown();
-      executor.awaitTermination(1, TimeUnit.MINUTES);
-    } catch (InterruptedException e) {
-      System.err.println("Shutdown termination NOT completed gracefully!");
+      System.out.printf("Awaiting all %s threads to complete...%n", virtual ? "virtual" : "system");
     }
-    System.out.println(executor);
+    listener.executionFinished(engine, TestExecutionResult.successful());
   }
 
-  private void executeInFiberScope(TestDescriptor engine, EngineExecutionListener listener) {
-    System.out.println("LoomTestEngine.executeInFiberScope");
-    try (var scope = FiberScope.open()) {
-      System.out.println(scope);
-      var tests = engine.getChildren();
-      System.out.println("scheduling " + tests.size() + " tests via fiber scope");
-      for (var test : tests) {
-        listener.executionStarted(test);
-        var future = scope.schedule((Runnable) test).toFuture();
-        future.whenCompleteAsync(markSuccessfullyFinished(listener, test));
-      }
-      System.out.println("awaiting all fibers to complete...");
+  private static ExecutorService newExecutorService(boolean virtual) {
+    if (virtual) {
+      var factory = Thread.builder().virtual().factory();
+      return Executors.newUnboundedExecutor(factory);
     }
+    return Executors.newFixedThreadPool(1000);
   }
 
-  private BiConsumer<Object, Throwable> markSuccessfullyFinished(
-      EngineExecutionListener listener, TestDescriptor child) {
-    return (r, t) -> listener.executionFinished(child, TestExecutionResult.successful());
+  private static BiConsumer<Object, Throwable> markSuccessfullyFinished(
+      EngineExecutionListener listener, TestDescriptor test) {
+
+    return (r, t) -> listener.executionFinished(test, TestExecutionResult.successful());
   }
 }
