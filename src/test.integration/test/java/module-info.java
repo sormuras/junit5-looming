@@ -3,4 +3,5 @@ open /*test*/ module test.integration {
   requires de.sormuras.junit.looming;
   // module we're testing with
   requires test.base;
+  uses org.junit.platform.engine.TestEngine;
 }
