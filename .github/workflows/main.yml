@@ -1,12 +1,8 @@
 name: CI
-
-on: [push]
-
+on: push
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@master
     - name: Build and test JUnit 5 Looming Test Engine
@@ -24,4 +20,4 @@ jobs:
     - name: 'Virtual Threads running 100.000 tests'
       run: $JUNIT --config virtual=true --config tests=100000
     - name: 'Virtual Threads running 1.000.000 tests'
-       run: $JUNIT --config virtual=true --config tests=1000000
+      run: $JUNIT --config virtual=true --config tests=1000000
