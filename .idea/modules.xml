@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/junit5-looming.iml" filepath="$PROJECT_DIR$/.idea/junit5-looming.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/de.sormuras.junit.looming.iml" filepath="$PROJECT_DIR$/.idea/de.sormuras.junit.looming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/junit5-looming.iml" filepath="$PROJECT_DIR$/.idea/junit5-looming.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/test.base.iml" filepath="$PROJECT_DIR$/.idea/test.base.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/test.integration.iml" filepath="$PROJECT_DIR$/.idea/test.integration.iml" />
     </modules>
