@@ -4,7 +4,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.BiConsumer;
-import java.util.function.Supplier;
 import org.junit.platform.engine.EngineDiscoveryRequest;
 import org.junit.platform.engine.EngineExecutionListener;
 import org.junit.platform.engine.ExecutionRequest;
@@ -14,7 +13,19 @@ import org.junit.platform.engine.TestExecutionResult;
 import org.junit.platform.engine.UniqueId;
 import org.junit.platform.engine.support.descriptor.EngineDescriptor;
 
+/** Test engine implementation generating and executing "sleepy tests". */
 public class LoomTestEngine implements TestEngine {
+
+  /**
+   * Number of tests to generate.
+   *
+   * <p>{@code -Dtests=12345}
+   *
+   * @see <a
+   *     href="https://junit.org/junit5/docs/current/user-guide/#running-tests-config-params">JUnit
+   *     Configuration Parameters</a>
+   */
+  public static final int TESTS = 20;
 
   @Override
   public String getId() {
@@ -23,9 +34,11 @@ public class LoomTestEngine implements TestEngine {
 
   @Override
   public TestDescriptor discover(EngineDiscoveryRequest request, UniqueId uniqueId) {
-    var caption = "Loom TestEngine on " + Runtime.version();
+    var virtual = request.getConfigurationParameters().getBoolean("virtual").orElse(false);
+    var caption = "Looming on " + Runtime.version() + " [" + (virtual ? "virtual" : "system") + "]";
     var engine = new EngineDescriptor(uniqueId, caption);
-    int tests = request.getConfigurationParameters().get("tests", Integer::parseInt).orElse(20);
+    int tests = request.getConfigurationParameters().get("tests", Integer::parseInt).orElse(TESTS);
+    System.out.println("Creating " + tests + " tests");
     for (int i = 0; i < tests; i++) {
       engine.addChild(new Test(engine.getUniqueId(), i));
     }
@@ -47,8 +60,9 @@ public class LoomTestEngine implements TestEngine {
         future.whenCompleteAsync(markSuccessfullyFinished(listener, test));
       }
       System.out.printf("Awaiting all %s threads to complete...%n", virtual ? "virtual" : "system");
+    } finally {
+      listener.executionFinished(engine, TestExecutionResult.successful());
     }
-    listener.executionFinished(engine, TestExecutionResult.successful());
   }
 
   private static ExecutorService newExecutorService(boolean virtual) {
