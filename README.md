@@ -15,6 +15,7 @@ JUnit 5 Test Engine using project Loom early-access builds
 | GitHub/Azure (Linux)   | 6              | n.a.            | 3              | 20              | 223              |
 | [GH 2019-12-19] (Linux)| 7              | 53              | 3              | 18              | 227              |
 | [GH 2020-01-25] (Linux)| 6              | 53              | 2              | 14              | 162              |
+| [GH 2020-01-28] (Linux)| 7              | 53              | 3              | 16              | 150              |
 
 ## projects, demos, blogs, and spikes using loom
 
@@ -25,3 +26,4 @@ JUnit 5 Test Engine using project Loom early-access builds
 
 [GH 2019-12-19]: https://github.com/sormuras/junit5-looming/runs/356277420
 [GH 2020-01-25]: https://github.com/sormuras/junit5-looming/runs/408878572
+[GH 2020-01-28]: https://github.com/sormuras/junit5-looming/runs/412758929
