@@ -2,7 +2,7 @@
 JUnit 5 Test Engine using project Loom early-access builds
 
 - https://jdk.java.net/loom/
-- https://mail.openjdk.java.net/pipermail/loom-dev/2019-December/000931.html
+- https://mail.openjdk.java.net/pipermail/loom-dev/2020-January/001002.html
 - https://www.youtube.com/watch?v=NV46KFV1m-4
 
 ## timings
