@@ -13,7 +13,7 @@ jobs:
     - name: Build and test JUnit 5 Looming Test Engine
       run: |
         wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
-        source ./install-jdk.sh --url https://download.java.net/java/early_access/loom/3/openjdk-14-loom+3-74_linux-x64_bin.tar.gz
+        source ./install-jdk.sh --url https://download.java.net/java/early_access/loom/3/openjdk-15-loom+3-20_linux-x64_bin.tar.gz
         java src/build/Build.java
         echo ::set-env name=JUNIT::"${JAVA_HOME}/bin/java -Xmx2G -XX:+UseContinuationChunks --module-path bin/main/modules:lib --module org.junit.platform.console --details SUMMARY --scan-modules"
     - name: 'Normal Threads running 10.000 tests'
