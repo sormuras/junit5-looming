@@ -19,9 +19,10 @@ JUnit 5 Test Engine using project Loom early-access builds
 
 ## projects, demos, blogs, and spikes using loom
 
-- https://github.com/forax/loom-fiber
+- https://github.com/forax/loom-fiber (Rémi Forax)
 - https://i-rant.arnaudbos.com/loom-part-0-rationale/ (@arnaud_bos)
 - https://horstmann.com/unblog/2019-12-05/ (@cayhorstmann)
+- https://blog.softwaremill.com/will-project-loom-obliterate-java-futures-fb1a28508232 (Adam Warski)
 
 
 [GH 2019-12-19]: https://github.com/sormuras/junit5-looming/runs/356277420
