@@ -36,6 +36,7 @@ public class LoomTestEngine implements TestEngine {
   public TestDescriptor discover(EngineDiscoveryRequest request, UniqueId uniqueId) {
     var virtual = request.getConfigurationParameters().getBoolean("virtual").orElse(false);
     var caption = "Looming on " + Runtime.version() + " [" + (virtual ? "virtual" : "system") + "]";
+    System.out.println(caption);
     var engine = new EngineDescriptor(uniqueId, caption);
     int tests = request.getConfigurationParameters().get("tests", Integer::parseInt).orElse(TESTS);
     System.out.println("Creating " + tests + " tests");
