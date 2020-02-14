@@ -23,6 +23,7 @@ JUnit 5 Test Engine using project Loom early-access builds
 - https://i-rant.arnaudbos.com/loom-part-0-rationale/ (@arnaud_bos)
 - https://horstmann.com/unblog/2019-12-05/ (@cayhorstmann)
 - https://blog.softwaremill.com/will-project-loom-obliterate-java-futures-fb1a28508232 (Adam Warski)
+- https://developers.redhat.com/blog/2019/06/19/project-loom-lightweight-java-threads (Faisal Masood)
 
 
 [GH 2019-12-19]: https://github.com/sormuras/junit5-looming/runs/356277420
