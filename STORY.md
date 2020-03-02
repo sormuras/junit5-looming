@@ -14,7 +14,28 @@ Platform + Jupiter + Vintage + ...
 ## Project Loom
 
 A Users' View on Project Loom
-"Virtual Thread is a Thread"
+
+Let's read the API documentation of class `java.base/java.lang.Thread` together:
+https://download.java.net/java/early_access/loom/docs/api/java.base/java/lang/Thread.html
+
+A thread is a thread of execution in a program.
+The Java virtual machine allows an application to have multiple threads of execution running concurrently.
+
+Thread supports the creation of threads that are scheduled by the operating system.
+These threads are sometimes known as kernel threads or heavyweight threads and will usually have a large stack and other resources that are maintained by the operating system.
+Kernel threads are suitable for executing all types of tasks but they are a limited resource.
+
+Thread also supports the creation of virtual threads that are scheduled by the Java virtual machine using a small set of kernel threads.
+Virtual threads will typically require few resources and a single Java virtual machine may support millions of virtual threads.
+Virtual threads are suitable for executing tasks that spend most of the time blocked, often waiting for synchronous blocking I/O operations to complete.
+Locking and I/O operations are the scheduling points where a kernel thread is re-scheduled from one virtual thread to another.
+Code executing in virtual threads will usually not be aware of the underlying kernel thread, and in particular, the currentThread() method, to obtain a reference to the current thread, will return the Thread object for the virtual thread.
+
+Thread defines factory methods, and a Thread.Builder API, for creating kernel or virtual threads.
+It also defines (for compatibility and customization reasons) constructors for creating kernel threads.
+Newer code is encouraged to use the factory methods or the builder rather than the constructors.
+
+
 
 ## TestEngine: `junit5-looming`
 
