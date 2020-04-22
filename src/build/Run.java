@@ -17,7 +17,7 @@ public class Run {
     var java =
         new Command("java")
             .add(ProcessHandle.current().info().command().orElse("java"))
-            .add("-XX:+UseContinuationChunks")
+            // TODO .add("-XX:+UseContinuationChunks")
             .add("--module-path", List.of(Path.of("bin/main/modules"), Path.of("lib")))
             .add("--module", "org.junit.platform.console")
             .add("--details=SUMMARY")
