@@ -1,9 +1,10 @@
 # junit5-looming
 JUnit 5 Test Engine using project Loom early-access builds
 
-- https://jdk.java.net/loom/
-- https://mail.openjdk.java.net/pipermail/loom-dev/2020-January/001002.html
-- https://www.youtube.com/watch?v=NV46KFV1m-4
+- https://jdk.java.net/loom **Project Loom Early-Access Builds**
+- https://mail.openjdk.java.net/pipermail/loom-dev **The loom-dev Archives**
+- https://cr.openjdk.java.net/~rpressler/loom/loom/sol1_part1.html **State of Loom** Ron Pressler, May 2020
+- https://www.youtube.com/watch?v=NV46KFV1m-4 **Project Loom Update** Alan Bateman, Rickard Bäckman, July 2019
 
 ## timings
 
