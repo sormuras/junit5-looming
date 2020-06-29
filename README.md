@@ -2,6 +2,7 @@
 JUnit 5 Test Engine using project Loom early-access builds
 
 - https://jdk.java.net/loom **Project Loom Early-Access Builds**
+- https://wiki.openjdk.java.net/display/loom/Getting+started **Getting started with Loom**
 - https://mail.openjdk.java.net/pipermail/loom-dev **The loom-dev Archives**
 - https://cr.openjdk.java.net/~rpressler/loom/loom/sol1_part1.html **State of Loom** Ron Pressler, May 2020
 - https://www.youtube.com/watch?v=NV46KFV1m-4 **Project Loom Update** Alan Bateman, Rickard Bäckman, July 2019
@@ -19,6 +20,7 @@ JUnit 5 Test Engine using project Loom early-access builds
 | [GH 2020-01-28] (Linux)| 7              | 53              | 3              | 16              | 150              |
 | [GH 2020-02-27] (Linux)| 7              | 52              | 3              | 17              | 150              |
 | [GH 2020-05-15] (Linux)| 6              | 53              | 3              | 18              | 183              |
+| [GH 2020-06-29] (Linux)| 6              | 51              | 2              | 12              | 120              |
 
 ## projects, demos, blogs, and spikes using loom
 
@@ -34,3 +36,4 @@ JUnit 5 Test Engine using project Loom early-access builds
 [GH 2020-01-28]: https://github.com/sormuras/junit5-looming/runs/412758929
 [GH 2020-02-27]: https://github.com/sormuras/junit5-looming/runs/471973940
 [GH 2020-05-15]: https://github.com/sormuras/junit5-looming/runs/678623328
+[GH 2020-06-29]: https://github.com/sormuras/junit5-looming/runs/818706426
