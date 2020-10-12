@@ -6,16 +6,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ ubuntu-latest ]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
+    - uses: sormuras/download-jdk@v1
+      id: jdk
+      with:
+        feature: Loom
+    - uses: actions/setup-java@v1
+      with:
+        java-version: ${{ steps.jdk.outputs.version }}
+        jdkFile: ${{ steps.jdk.outputs.file }}
     - name: Build and test JUnit 5 Looming Test Engine
       run: |
-        wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
-        source ./install-jdk.sh --url https://download.java.net/java/early_access/loom/6/openjdk-16-loom+6-105_linux-x64_bin.tar.gz
         java src/build/Build.java
-        echo ::set-env name=JUNIT::"${JAVA_HOME}/bin/java -Xmx2G --module-path bin/main/modules:lib --module org.junit.platform.console --details SUMMARY --scan-modules"
+        echo "JUNIT=${JAVA_HOME}/bin/java -Xmx2G --module-path bin/main/modules:lib --module org.junit.platform.console --details SUMMARY --scan-modules" >> $GITHUB_ENV
     - name: 'Normal Threads running 10.000 tests'
       run: $JUNIT --config virtual=false --config tests=10000
     - name: 'Normal Threads running 100.000 tests'
