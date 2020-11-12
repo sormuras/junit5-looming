@@ -46,13 +46,13 @@ public class Build {
     Files.createDirectories(lib);
     load(lib, "org.apiguardian", "apiguardian-api", "1.1.0");
     load(lib, "org.opentest4j", "opentest4j", "1.2.0");
-    var platform = "1.6.0";
+    var platform = "1.7.0";
     load(lib, "org.junit.platform", "junit-platform-commons", platform);
     load(lib, "org.junit.platform", "junit-platform-console", platform);
     load(lib, "org.junit.platform", "junit-platform-engine", platform);
     load(lib, "org.junit.platform", "junit-platform-launcher", platform);
     load(lib, "org.junit.platform", "junit-platform-reporting", platform);
-    var jupiter = "5.6.0";
+    var jupiter = "5.7.0";
     load(lib, "org.junit.jupiter", "junit-jupiter", jupiter);
     load(lib, "org.junit.jupiter", "junit-jupiter-api", jupiter);
     load(lib, "org.junit.jupiter", "junit-jupiter-engine", jupiter);
