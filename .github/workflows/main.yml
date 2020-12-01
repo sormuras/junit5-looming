@@ -1,5 +1,13 @@
 name: CI
-on: push
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Reason'
+        required: false
+        default: 'Because...'
 jobs:
   build:
     name: "JUnit 5 Looming (${{ matrix.os }})"
