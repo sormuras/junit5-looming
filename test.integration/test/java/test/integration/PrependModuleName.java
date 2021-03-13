@@ -1,4 +1,4 @@
-package test.base;
+package test.integration;
 
 import org.junit.jupiter.api.DisplayNameGenerator;
 

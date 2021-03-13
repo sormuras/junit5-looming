@@ -1,8 +1,10 @@
 open /*test*/ module test.integration {
   // module under test
-  requires de.sormuras.junit.looming;
-  // module we're testing with
-  requires test.base;
+  requires com.github.sormuras.junit.looming;
+  // modules we're testing with
+  requires org.junit.jupiter;
+  requires org.junit.platform.console;
   requires org.junit.platform.engine;
+
   uses org.junit.platform.engine.TestEngine;
 }

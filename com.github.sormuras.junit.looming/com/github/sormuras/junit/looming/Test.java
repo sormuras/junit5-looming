@@ -1,4 +1,4 @@
-package de.sormuras.junit.looming;
+package com.github.sormuras.junit.looming;
 
 import org.junit.platform.engine.UniqueId;
 import org.junit.platform.engine.support.descriptor.AbstractTestDescriptor;

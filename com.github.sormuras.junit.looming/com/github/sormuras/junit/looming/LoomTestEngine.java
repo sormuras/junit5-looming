@@ -1,4 +1,4 @@
-package de.sormuras.junit.looming;
+package com.github.sormuras.junit.looming;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
