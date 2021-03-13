@@ -3,11 +3,7 @@ on:
   push:
     branches: [ master ]
   workflow_dispatch:
-    inputs:
-      name:
-        description: 'Reason'
-        required: false
-        default: 'Because...'
+
 jobs:
   build:
     name: "JUnit 5 Looming (${{ matrix.os }})"
@@ -17,26 +13,28 @@ jobs:
         os: [ ubuntu-latest ]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v2
-    - uses: sormuras/download-jdk@v1
-      id: jdk
-      with:
-        feature: Loom
-    - uses: actions/setup-java@v1
-      with:
-        java-version: ${{ steps.jdk.outputs.version }}
-        jdkFile: ${{ steps.jdk.outputs.file }}
-    - name: Build and test JUnit 5 Looming Test Engine
-      run: |
-        java src/build/Build.java
-        echo "JUNIT=${JAVA_HOME}/bin/java -Xmx2G --module-path bin/main/modules:lib --module org.junit.platform.console --details SUMMARY --scan-modules" >> $GITHUB_ENV
-    - name: 'Normal Threads running 10.000 tests'
-      run: $JUNIT --config virtual=false --config tests=10000
-    - name: 'Normal Threads running 100.000 tests'
-      run: $JUNIT --config virtual=false --config tests=100000
-    - name: 'Virtual Threads running 10.000 tests'
-      run: $JUNIT --config virtual=true --config tests=10000
-    - name: 'Virtual Threads running 100.000 tests'
-      run: $JUNIT --config virtual=true --config tests=100000
-    - name: 'Virtual Threads running 1.000.000 tests'
-      run: $JUNIT --config virtual=true --config tests=1000000
+      - uses: actions/checkout@v2
+      - uses: sormuras/download-jdk@v1
+        id: jdk
+        with:
+          feature: Loom
+      - uses: actions/setup-java@v1
+        with:
+          java-version: ${{ steps.jdk.outputs.version }}
+          jdkFile: ${{ steps.jdk.outputs.file }}
+      - name: 'Initialize Bach'
+        run: jshell https://bit.ly/bach-init
+      - name: 'Build with Bach'
+        run: .bach/bin/bach --guess --skip-tool javadoc --skip-tool jlink build
+      - name: 'Prepare JUnit Platform Runs'
+        run: echo "JUNIT=${JAVA_HOME}/bin/java -Xmx2G --module-path .bach/workspace/modules:.bach/external-modules --module org.junit.platform.console --details SUMMARY --scan-modules" >> $GITHUB_ENV
+      - name: 'Normal Threads running 10.000 tests'
+        run: $JUNIT --config virtual=false --config tests=10000
+      - name: 'Normal Threads running 100.000 tests'
+        run: $JUNIT --config virtual=false --config tests=100000
+      - name: 'Virtual Threads running 10.000 tests'
+        run: $JUNIT --config virtual=true --config tests=10000
+      - name: 'Virtual Threads running 100.000 tests'
+        run: $JUNIT --config virtual=true --config tests=100000
+      - name: 'Virtual Threads running 1.000.000 tests'
+        run: $JUNIT --config virtual=true --config tests=1000000
