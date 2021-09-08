@@ -2,8 +2,23 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/.bach/src" isTestSource="false" />
+    </content>
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/.bach/bin" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/.bach/bin" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/.bach/bin" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/.bach/bin" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
     <orderEntry type="inheritedJdk" />
   </component>
 </module>

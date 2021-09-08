@@ -1,3 +1,4 @@
-.bach/
-bin/
+.bach/workspace/
+
+*.jar
 *.log
