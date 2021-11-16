@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+local VM='--enable-preview --source 18 --module-path .bach/bin --add-modules ALL-MODULE-PATH'
+
 if [[ $1 == 'boot' ]]; then
   shift 1
-  jshell --module-path .bach/bin --add-modules ALL-MODULE-PATH .bach/bin/bach.jshell "$@"
+  jshell $VM .bach/bin/bach.jshell "$@"
   exit $?
 fi
 
@@ -23,14 +25,14 @@ fi
 if [[ -f ".bach/src/$1.java" ]]; then
   PROGRAM=".bach/src/$1.java"
   shift 1
-  java --module-path .bach/bin --add-modules ALL-MODULE-PATH "$PROGRAM" "$@"
+  java $VM "$PROGRAM" "$@"
   exit $?
 fi
 
 if [[ -f "$1" ]]; then
-  java --module-path .bach/bin --add-modules ALL-MODULE-PATH "$@"
+  java $VM "$@"
   exit $?
 fi
 
-java --module-path .bach/bin --module com.github.sormuras.bach "$@"
+java $VM --module com.github.sormuras.bach "$@"
 exit $?

@@ -1,8 +1,10 @@
 @ECHO OFF
 
+SET VM=--enable-preview --source 18 --module-path .bach\bin --add-modules ALL-MODULE-PATH
+
 IF "%~1" == "boot" (
   REM SHIFT 1
-  jshell --module-path .bach\bin --add-modules ALL-MODULE-PATH .bach\bin\bach.jshell %2 %3 %4 %5 %6 %7 %8 %9
+  jshell %VM% .bach\bin\bach.jshell %2 %3 %4 %5 %6 %7 %8 %9
   EXIT /B %ERRORLEVEL%
 )
 
@@ -23,12 +25,12 @@ IF "%~1" == "init" (
 IF EXIST ".bach\src\%~1.java" (
   REM PROGRAM=
   REM SHIFT 1
-  java --module-path .bach\bin --add-modules ALL-MODULE-PATH ".bach\src\%~1.java" %2 %3 %4 %5 %6 %7 %8 %9
+  java %VM% ".bach\src\%~1.java" %2 %3 %4 %5 %6 %7 %8 %9
   EXIT /B %ERRORLEVEL%
 )
 
 IF EXIST "%~1" (
-  java --module-path .bach\bin --add-modules ALL-MODULE-PATH %*
+  java %VM% %*
   EXIT /B %ERRORLEVEL%
 )
 
