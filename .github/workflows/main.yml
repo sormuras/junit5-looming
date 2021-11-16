@@ -12,14 +12,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
-      - uses: sormuras/download-jdk@v1
-        id: jdk
+      - uses: sormuras/setup-jdk@master
         with:
+          website: java.net
           feature: Loom
-      - uses: actions/setup-java@v1
-        with:
-          java-version: ${{ steps.jdk.outputs.version }}
-          jdkFile: ${{ steps.jdk.outputs.file }}
       - name: 'Build with Bach'
         run: .bach/bin/bach build
       - name: 'Prepare JUnit Platform Runs'
