@@ -10,7 +10,7 @@ class build {
       grabber.grabMissingExternalModules();
 
       var builder = SimpleSpace.of(bach).withModule("com.github.sormuras.junit.looming");
-      builder.compile(javac -> javac.add("--release", 18).add("--enable-preview"));
+      builder.compile(javac -> javac.add("--release", 19).add("--enable-preview"));
       builder.runJUnit("com.github.sormuras.junit.looming");
     }
   }
