@@ -1,6 +1,6 @@
 @ECHO OFF
 
-SET VM=--enable-preview --source 18 --module-path .bach\bin --add-modules ALL-MODULE-PATH
+SET VM=--enable-preview --source 19 --module-path .bach\bin --add-modules ALL-MODULE-PATH
 
 IF "%~1" == "boot" (
   REM SHIFT 1

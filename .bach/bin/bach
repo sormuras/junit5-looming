@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VM='--enable-preview --source 18 --module-path .bach/bin --add-modules ALL-MODULE-PATH'
+VM='--enable-preview --source 19 --module-path .bach/bin --add-modules ALL-MODULE-PATH'
 
 if [[ $1 == 'boot' ]]; then
   shift 1
