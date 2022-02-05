@@ -12,15 +12,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
-      - uses: sormuras/download-jdk@v1
-        id: jdk
+      - uses: oracle-actions/setup-java@v1
         with:
-          feature: Loom
-      - uses: actions/setup-java@v2
-        with:
-          distribution: jdkfile
-          java-version: ${{ steps.jdk.outputs.version }}
-          jdkFile: ${{ steps.jdk.outputs.file }}
+          release: loom
       - name: 'Build with Bach'
         run: .bach/bin/bach build
       - name: 'Prepare JUnit Platform Runs'
