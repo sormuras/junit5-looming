@@ -28,6 +28,7 @@ JUnit 5 Test Engine using project Loom early-access builds
 | GH 2021-03-13          | 6              | 54              | 3              | 16              | 134              |
 | GH 2021-09-08          | 6              | 51              | 3              | 11              | 141              |
 | GH 2021-11-16          | 6              | 51              | 3              | 17              | 193              |
+| GH 2022-02-05          | 6              | 51              | 2              | 12              | 149              |
 
 ## projects, demos, blogs, and spikes using loom
 
