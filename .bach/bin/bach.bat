@@ -9,7 +9,7 @@ IF "%~1" == "boot" (
 )
 
 IF "%~1" == "clean" (
-  IF EXIST .bach\workspace rmdir /S /Q .bach\workspace
+  IF EXIST .bach\out rmdir /S /Q .bach\out
   EXIT /B %ERRORLEVEL%
 )
 

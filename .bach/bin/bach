@@ -9,7 +9,7 @@ if [[ $1 == 'boot' ]]; then
 fi
 
 if [[ $1 == 'clean' ]]; then
-  rm -rf .bach/workspace
+  rm -rf .bach/out
   exit $?
 fi
 

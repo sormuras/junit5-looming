@@ -13,10 +13,9 @@ class build {
         new Bach(
             Configuration.ofDefaults(),
             Project.ofDefaults()
+                .withEnablePreviewFeatures("main")
                 .withModule("main", "com.github.sormuras.junit.looming")
                 .withModule("test", "test.integration/test/java")
-                .withTargetsJava("main", Runtime.version().feature())
-                .withAdditionalCompileJavacArguments("main", "--enable-preview")
                 .withExternalModules("junit", "5.8.2"));
 
     bach.run("cache"); // go offline by caching all required external assets that are missing
