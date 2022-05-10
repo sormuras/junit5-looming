@@ -20,18 +20,13 @@ class build {
     bach.run("cache"); // go offline by caching all required external assets that are missing
 
     bach.run(
-        "javac",
-        "--release",
-        19,
-        "--enable-preview",
-        "--module",
-        "com.github.sormuras.junit.looming",
-        "--module-source-path",
-        ".",
-        "--module-path",
-        ".bach/external-modules",
-        "-d",
-        ".bach/out/main/classes/java-19-preview");
+        ToolCall.of("javac")
+            .with("--release", 19)
+            .with("--enable-preview")
+            .with("--module", "com.github.sormuras.junit.looming")
+            .with("--module-source-path", ".")
+            .with("--module-path", ".bach/external-modules")
+            .with("-d", ".bach/out/main/classes/java-19-preview"));
 
     bach.run(
         ToolFinder.of(
