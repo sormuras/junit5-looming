@@ -14,15 +14,16 @@ class build {
             Configuration.ofDefaults(),
             Project.ofDefaults()
                 .withModule("main", "com.github.sormuras.junit.looming")
+                .withModule("test", "test.integration/test/java")
                 .withTargetsJava("main", Runtime.version().feature())
                 .withAdditionalCompileJavacArguments("main", "--enable-preview")
-                .withExternalModules("junit", "5.8.2")
-                .withRequiresModule("org.junit.jupiter")
-                .withRequiresModule("org.junit.platform.console"));
+                .withExternalModules("junit", "5.8.2"));
 
     bach.run("cache"); // go offline by caching all required external assets that are missing
     bach.run("compile"); // compile all modules in all project spaces
-    bach.run(
+    bach.run("test"); // TODO test all modules in test project spaces
+
+    bach.run( // custom modular test for test engine located in this project's main space
         ToolFinder.of(
             ModuleFinder.of(
                 Path.of(".bach/out/main/modules"),
