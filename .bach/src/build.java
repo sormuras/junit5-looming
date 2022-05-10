@@ -1,17 +1,46 @@
 import com.github.sormuras.bach.Bach;
-import com.github.sormuras.bach.external.JUnit;
-import com.github.sormuras.bach.simple.SimpleSpace;
+import com.github.sormuras.bach.Configuration;
+import com.github.sormuras.bach.ToolCall;
+import com.github.sormuras.bach.ToolFinder;
+import com.github.sormuras.bach.ToolRunner;
+import com.github.sormuras.bach.project.Project;
+import java.lang.module.ModuleFinder;
+import java.nio.file.Path;
 
 class build {
   public static void main(String... args) {
-    try (var bach = new Bach(args)) {
-      var grabber = bach.grabber(JUnit.version("5.8.1"));
-      grabber.grabExternalModules("org.junit.jupiter", "org.junit.platform.console");
-      grabber.grabMissingExternalModules();
+    var bach =
+        new Bach(
+            Configuration.ofDefaults(),
+            Project.ofDefaults()
+                .withExternalModules("junit", "5.8.2")
+                .withRequiresModule("org.junit.jupiter")
+                .withRequiresModule("org.junit.platform.console"));
 
-      var builder = SimpleSpace.of(bach).withModule("com.github.sormuras.junit.looming");
-      builder.compile(javac -> javac.add("--release", 19).add("--enable-preview"));
-      builder.runJUnit("com.github.sormuras.junit.looming");
-    }
+    bach.run("cache"); // go offline by caching all required external assets that are missing
+
+    bach.run(
+        "javac",
+        "--release",
+        19,
+        "--enable-preview",
+        "--module",
+        "com.github.sormuras.junit.looming",
+        "--module-source-path",
+        ".",
+        "--module-path",
+        ".bach/external-modules",
+        "-d",
+        ".bach/out/main/classes/java-19-preview");
+
+    bach.run(
+        ToolFinder.of(
+            ModuleFinder.of(
+                Path.of(".bach/out/main/classes/java-19-preview"),
+                Path.of(".bach/external-modules")),
+            true,
+            "com.github.sormuras.junit.looming"),
+        ToolCall.of("junit").with("--scan-modules"),
+        ToolRunner.RunModifier.RUN_WITH_PROVIDERS_CLASS_LOADER);
   }
 }
