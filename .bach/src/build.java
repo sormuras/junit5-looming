@@ -3,7 +3,7 @@ import com.github.sormuras.bach.Configuration;
 import com.github.sormuras.bach.ToolCall;
 import com.github.sormuras.bach.ToolFinder;
 import com.github.sormuras.bach.ToolRunner;
-import com.github.sormuras.bach.project.Project;
+import com.github.sormuras.bach.Project;
 import java.lang.module.ModuleFinder;
 import java.nio.file.Path;
 
