@@ -8,7 +8,8 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="com.github.sormuras.junit.looming" scope="TEST" />
-    <orderEntry type="library" scope="TEST" name="libraries" level="project" />
+    <orderEntry type="library" scope="TEST" name="junit.jupiter" level="project" />
+    <orderEntry type="library" scope="TEST" name="junit.platform.console" level="project" />
     <orderEntry type="inheritedJdk" />
   </component>
 </module>

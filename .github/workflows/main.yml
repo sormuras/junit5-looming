@@ -11,15 +11,17 @@ jobs:
         os: [ ubuntu-latest ]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: oracle-actions/setup-java@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
         with:
-          website: jdk.java.net
-          release: loom
-      - name: 'Build with Bach'
-        run: .bach/bin/bach build
+          distribution: oracle
+          java-version: 19
+      - name: 'Build'
+        run: |
+          javac --enable-preview --release 19 --module-path lib --module-source-path . --module com.github.sormuras.junit.looming -d classes
+          jar --create --file lib/com.github.sormuras.junit.looming.jar -C classes/com.github.sormuras.junit.looming .
       - name: 'Prepare JUnit Platform Runs'
-        run: echo "JUNIT=${JAVA_HOME}/bin/java -Xmx2G --enable-preview --module-path .bach/out/main/modules:.bach/external-modules --module org.junit.platform.console --details SUMMARY --scan-modules" >> $GITHUB_ENV
+        run: echo "JUNIT=${JAVA_HOME}/bin/java -Xmx2G --enable-preview --module-path lib --module org.junit.platform.console --details SUMMARY --scan-modules" >> $GITHUB_ENV
       - name: 'Normal Threads running 10.000 tests'
         run: $JUNIT --config virtual=false --config tests=10000
       - name: 'Normal Threads running 100.000 tests'
