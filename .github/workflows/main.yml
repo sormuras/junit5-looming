@@ -21,7 +21,7 @@ jobs:
           javac --module-path lib --module-source-path . --module com.github.sormuras.junit.looming -d classes
           jar --create --file lib/com.github.sormuras.junit.looming.jar -C classes/com.github.sormuras.junit.looming .
       - name: 'Prepare JUnit Platform Runs'
-        run: echo "JUNIT=${JAVA_HOME}/bin/java -Xmx2G --module-path lib --module org.junit.platform.console --details SUMMARY --scan-modules" >> $GITHUB_ENV
+        run: echo "JUNIT=${JAVA_HOME}/bin/java -Xmx2G -Djdk.trackAllThreads=false --module-path lib --module org.junit.platform.console --details SUMMARY --scan-modules" >> $GITHUB_ENV
       - name: 'Normal Threads running 10.000 tests'
         run: $JUNIT --config virtual=false --config tests=10000
       - name: 'Normal Threads running 100.000 tests'
