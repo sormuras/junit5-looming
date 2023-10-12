@@ -1,6 +1,6 @@
 # junit5-looming
 
-JUnit 5 Test Engine using project Loom early-access builds
+JUnit 5 Test Engine show-casing Java's Virtual Threads
 
 - https://jdk.java.net/loom **Project Loom Early-Access Builds**
 - https://wiki.openjdk.java.net/display/loom/Getting+started **Getting started with Loom**
