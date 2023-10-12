@@ -31,6 +31,7 @@ JUnit 5 Test Engine show-casing Java's Virtual Threads
 | GH 2022-02-05        | 6              | 51              | 2              | 12              | 149               |
 | GH 2022-05-11        | 6              | 53              | 3              | 12              | 146               |
 | GH 2023-02-15        | 6              | 51              | 2              | 11              | 149               |
+| GH 2023-10-12        | 6              | 51              | 3              | 18              | 274               |
 
 ## projects, demos, blogs, and spikes using loom
 
